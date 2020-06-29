@@ -1,0 +1,16 @@
+metadata:
+  title: Virtual Court Sample Interviews
+
+---
+mandatory: true
+question: |
+subquestion: |
+  This project is a host place for sample interviews to show others how to address a particular need.
+  
+  **For authors**: In your sample interview, try to explicitly explain your purpose and clearly outline the steps involved.
+  
+  **For users**: each yml file in this project is an independant interview, you can run it first to see how it functions, then view the code and adapt it to your own interview. 
+  
+  If an interview involves a template file, sometimes you may need to download it to see the inside content, especially those addendum templates.
+
+  

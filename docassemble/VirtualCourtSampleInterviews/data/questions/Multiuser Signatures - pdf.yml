@@ -1,0 +1,166 @@
+---
+comment: This is an expansion of a code sample from Jonathan Pyle.
+metadata:
+  title: |
+    Ask for two parties' signatures - pdf
+---
+objects:  
+  - client: Individual
+  - attorney: Individual
+---
+initial: true
+code: |
+  multi_user = True
+  role = 'client'
+  if user_logged_in():
+    if not defined('client.email'):
+      client.email = user_info().email     
+    if user_info().email == client.email:      
+      role = 'client'
+    elif user_info().email == attorney.email:	    
+      role = 'attorney'
+    else:
+      user_kicked_out
+  else:  
+    user_must_log_in
+---
+mandatory: true
+code: |
+  if role == 'client':
+    client.endpoint
+  elif role == 'attorney':
+    if not defined('attorney.signature'): 
+      pre_attorney_signature
+    else:
+      final_screen
+---
+event: client.endpoint
+code: |
+  client.name
+  attorney.name
+  client.signature  
+  if not defined('attorney.signature'):    
+    waiting_on_attorney
+  else:
+    final_screen
+---
+event: attorney.endpoint
+code: |  
+  attorney.signature
+
+---
+question: |
+  What is your name?
+fields:
+  - First Name: client.name.first    
+    default: 'John'
+  - Last Name: client.name.last    
+    default: 'Doe'
+---
+question: |
+  What is the name and e-mail address of your attorney?
+fields:
+  - First Name: attorney.name.first    
+  - Last Name: attorney.name.last        
+  - E-mail: attorney.email
+    datatype: email       
+---
+question: |
+subquestion: |
+  Please sign your name below.
+signature: attorney.signature
+under: |
+  ${ attorney.name }
+---
+question: |
+  Please sign your name below.
+signature: client.signature
+under: |
+  ${ client.name }
+
+---
+event: pre_attorney_signature
+mandatory: true
+question: |
+subquestion: |
+  Please review the form. If you agree with the form, scroll down to sign.
+ 
+  Here is the filled form:<br/>
+  ${previewFile}
+action buttons:
+  - label: I Agree
+    action: attorney.endpoint    
+    color: success
+---
+event: waiting_on_attorney
+mandatory: true
+question: |  
+  Done for now.  
+subquestion: |
+  Here is the form with your signature. Please review it. If you need to make corrections, use the back button; otherwise please **ask ${ attorney } to go to [this link](${ interview_url() }) and register with the e-mail address ${ attorney.email }**.<br/>
+  
+  You can use the button below the file to check the status. You won't be able to proceed until the attorney has signed.<br/>
+  
+  If you leave this screen or close this session after you have sent the link to your attorney, you can always re-log in after ${ attorney } has signed, then go to "My Interviews" screen from the main manu to retrieve the signed agreement.
+
+  ${previewFile}
+buttons:
+  - Check: refresh
+---
+event: final_screen
+mandatory: true
+question: |  
+subquestion: |
+  % if role == 'client':
+   You have successfully completed the interview. Your attorney has signed the form, now you can download it from this screen. 
+  % else:
+   The form is now complete with your signature. You can  download it from this screen. 
+  % endif
+   ${ outputFile }
+buttons:
+  - End the Interview: exit
+  - Restart: restart
+--- 
+attachment: 
+  - name: mainform
+    filename: mainForm   
+    variable name: mainForm
+    pdf template file: debts.pdf
+    fields:
+      - Textfield78: ${ client.name }
+--- 
+attachment: 
+  - name: both parties signed form
+    filename: Final Form
+	  variable name: finalForm
+    docx template file: myform.docx   
+---
+attachment: 
+  - name: signed form preview
+    filename: Preview Form
+    variable name: previewForm
+    docx template file: myform.docx
+---
+comment: convert docx to pdf
+code: |        
+  previewFile = pdf_concatenate(mainForm, previewForm, filename="preview.pdf")	
+---
+comment: |
+  combine files and convert to pdf. 
+code: |       
+  outputFile = pdf_concatenate(mainForm, finalForm, filename="final.pdf")
+---
+event: user_kicked_out
+question: |
+  You are not authorized.
+subquestion: |
+  I'm not sure how you got here,
+  but you do not belong.  Scram!
+---
+event: user_must_log_in
+question: |
+subquestion: |
+  I am sorry, but you need to log in if you want to use this interview.
+buttons:
+  - Log in: signin
+  - Exit: exit

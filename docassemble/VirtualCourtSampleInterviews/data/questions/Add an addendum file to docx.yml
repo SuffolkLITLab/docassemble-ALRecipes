@@ -1,0 +1,83 @@
+---
+metadata:
+  title: Add an addendum file to docx
+---
+objects:  
+  - debts: DAList.using(object_type=Thing, complete_attribute='complete', ask_number=True) 
+---
+mandatory: true
+question: |  
+subquestion: | 
+  This sample interview illustrats how to add a docx addendum file to a pdf main template thru code. Fields in the pdf are only partially coded for illustration purpose.
+  
+  How to add an addendum: 
+  <ol>
+    <li>Create a docx file and load it to the template folder. </li>
+    <li>Add an "attachment" block for this docx. </li>
+    <li>Use the code to combine your original pdf template with the new docx file.</li>
+    <li>Display this file on the final screen.</li>
+   </ol>
+field: intro  
+---
+question: |  
+subquestion: | 
+fields:
+  - How many debts do you owe?: debts.target_number
+    datatype: integer
+    default: 2
+---
+question: |    
+subquestion: | 
+  % if debts.target_number > 1:
+    Please enter information related to your ${ ordinal(i) } debt.
+  % else:
+    Please enter information related to your debt. 
+  % endif
+fields:
+  - Creditor's name: debts[i].name.text  
+  - What kind of debt is this?: debts[i].type    
+  - How much did you borrow: debts[i].borrowedAmt
+    datatype: currency
+    default: 1000
+  - When did you borrow the money: debts[i].date
+    datatype: date
+    default: ${today().format("yyyy-MM-dd")}
+  - How much do you still owe?: debts[i].amtDue
+    datatype: currency
+    default: 800
+  - How often do you paid back for this debt?: debts[i].PayFrequency
+    datatype: radio
+    choices:
+      - Monthly: 12
+      - Weekly: 52
+    default: 12
+---
+code: |    
+  debts[i].name.text  
+  debts[i].complete = True   
+---
+mandatory: true
+question: |
+subquestion: | 
+  You have successfully completed the interview.    
+  ${ debts }
+
+attachment:
+  - name: Debt List
+    filename: Debts
+    docx template file: 
+      code: outputFile
+---
+attachment:
+  variable name: main
+  docx template file: debts.docx
+---
+attachment:
+  variable name: addendum
+  docx template file: debts_addendum.docx
+--- 
+code: |      
+  if debts.target_number > 1:
+    outputFile = docx_concatenate(main, addendum, filename="final.docx")
+  else:
+    outputFile = docx_concatenate(main, filename="final.docx")
