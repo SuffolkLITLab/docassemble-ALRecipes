@@ -1,0 +1,36 @@
+---
+metadata:
+  title: Shorten a url
+---
+modules:  
+  - docassemble.VirtualCourtToolbox.shortenURL
+---
+mandatory: true
+question: |
+subquestion: |
+  This interview calls a function from the toolbox in order to shorten a url.
+  
+  The output will include the original and shortened urls for your interview url and the user entered url.
+  
+fields:
+  Enter a url: my_url
+  
+---
+mandatory: true
+question: |
+subquestion: |
+  This is the original **interview url**:  
+  ${ interview_url() }
+  
+  This is the shortened interview url:  
+  ${ y.shortenedURL }
+  
+  This is the original **user entered url**:  
+  ${ my_url }
+  
+  This is the shortened user entered url:  
+  ${ z.shortenedURL }
+---
+code: |
+  y = shortenMe(interview_url())
+  z = shortenMe(my_url)
