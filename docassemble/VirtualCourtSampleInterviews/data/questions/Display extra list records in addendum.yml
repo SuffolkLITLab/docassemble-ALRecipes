@@ -7,6 +7,7 @@ modules:
 ---
 objects:  
   - debts: DAList.using(object_type=Thing, complete_attribute='complete', ask_number=True) 
+  - children: ChildList.using(ask_number=True) 
 ---
 mandatory: true
 question: |  
@@ -41,11 +42,37 @@ fields:
     datatype: currency
     default: 8000
 ---
+question: |  
+subquestion: |
+fields:
+  - How many children do you have?: children.target_number
+    datatype: integer
+    default: 2
+---
+question: |    
+subquestion: | 
+  % if children.target_number > 1:
+    Please info of your ${ ordinal(i) } child.
+  % else:
+    Please enter info of your child. 
+  % endif
+fields:
+  - First name: children[i].name.first  
+    default: 'Jane'
+  - Last name: children[i].name.last  
+    default: 'Anderson'
+  - Birth Date: children[i].birthdate
+    default: '5/4/2010'
+  - School name: children[i].schoolname
+    default: 'Lincoln Elementary School'
+    
+---
 mandatory: true
 question: |
 subquestion: |
-  You entered the flollowing:
-  ${ debts }
+  You entered the flollowing:<br/>
+  ${ debts }<br/>
+  ${ children }<br/>
 
 if: addAddendum
 attachment:
@@ -69,12 +96,12 @@ code: |
     tblList.append(tempTable1)
     
   #Repeate the above if you have more than one DAList in your interview. 
-  #if defendants.target_number > 1: 
-    #tempTable2 = ()
-    #heading2 = ['Defendant Name', 'Defendant Birth Date']
-    #title2 = 'List of dependants'  
-    #tempTable2 = myTable(defendants, title2, heading2).tableList  
-    #tblList.append(tempTable2)
+  if children.target_number > 1: 
+    tempTable2 = ()
+    heading2 = ['Child Name', 'Child Birth Date', 'School Name']
+    title2 = 'List of children'  
+    tempTable2 = myTable(children, title2, heading2).tableList  
+    tblList.append(tempTable2)
   
   #3. Determine if addendum is needed
   addAddendum = bool(tblList)

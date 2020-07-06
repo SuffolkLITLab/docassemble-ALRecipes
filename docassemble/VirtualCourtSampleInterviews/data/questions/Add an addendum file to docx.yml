@@ -8,15 +8,18 @@ objects:
 mandatory: true
 question: |  
 subquestion: | 
-  This sample interview illustrats how to add a docx addendum file to a pdf main template thru code. Fields in the pdf are only partially coded for illustration purpose.
+  This sample interview illustrats how to add a docx addendum file to a docx main template thru code. 
   
   How to add an addendum: 
   <ol>
     <li>Create a docx file and load it to the template folder. </li>
     <li>Add an "attachment" block for this docx. </li>
-    <li>Use the code to combine your original pdf template with the new docx file.</li>
+    <li>Use the code to combine your original docx template with the new docx file.</li>
     <li>Display this file on the final screen.</li>
    </ol>
+   
+   Note that in order to have a page break between the main form and the addendum, the addendum file has inserted a page break before the content, so when you open the .docx, you'll first see a blank page.
+   
 field: intro  
 ---
 question: |  
@@ -74,7 +77,7 @@ attachment:
 ---
 attachment:
   variable name: addendum
-  docx template file: debts_addendum.docx
+  docx template file: debts_addendum_with_page_break.docx
 --- 
 code: |      
   if debts.target_number > 1:

@@ -3,7 +3,7 @@ metadata:
   title: Shorten a url
 ---
 modules:  
-  - docassemble.VirtualCourtToolbox.shortenURL
+  - docassemble.VirtualCourtToolbox.misc
 ---
 mandatory: true
 question: |
