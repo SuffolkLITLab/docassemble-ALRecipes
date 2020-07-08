@@ -1,34 +1,38 @@
 metadata:
   title: Text Date Input
 ---
-modules:  
+modules:
   - docassemble.VirtualCourtToolbox.misc
 ---
 features:
-  javascript: docassemble.VirtualCourtToolbox:data/static/textDateInput.js
+  javascript: textDateInput.js
 ---
-mandatory: true
-question: |
-subquestion: |  
-  This sample shows you how to use a **textDateInput** type.<br/><br/>
-  textDateInput is good for dates such as birth_date where it's easier for a user to type than using a long dropdown, or when a browser doesn't honor a datepicker.
-field: intro  
+id: interview order
+mandatory: True
+code: |
+  date_of_birth
+  date_example_end
 ---
 question: |
   Compare regular date type with textdate type.
 subquestion: | 
-  Please note that **date validation message and cursor focus are controled by the server side, thus out of our control**.
+  This sample shows you how to use a **textDateInput** type.<br/><br/>
+  textDateInput is good for dates such as birth_date where it's easier for a user to type than using a long dropdown, or when a browser doesn't honor a datepicker.
+  
+  Please note that **date validation message and cursor focus are controlled by the server side, thus out of our control**.
 fields:
   - Date of birth: date_of_birth
     datatype: textdate    
-    default: '6/1/1990'
+    default: '2/1/2000'
     validate: |
-      lambda date_of_birth: True if is_date_valid(date_of_birth).valid else validation_error("Date out of range.")
+      lambda date_of_birth: True if is_date_valid( date_of_birth ).valid else validation_error("Your date doesn't look right")
 
   - When did you start working: employment_date
-    datatype: date        
+    datatype: date
+    required: False
 ---
-mandatory: True
+id: end
+event: date_example_end
 question: |
   You were born on ${ date_of_birth }.<br/><br/> 
   You started working on ${ employment_date }.<br/><br/>
@@ -36,5 +40,3 @@ question: |
 attachment:
   - name: Text Date
     docx template file: textDate.docx
-
-
