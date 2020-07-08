@@ -5,7 +5,7 @@ modules:
   - docassemble.VirtualCourtToolbox.misc
 ---
 features:
-  javascript: textDateInput.js
+  javascript: docassemble.VirtualCourtToolbox:data/static/
 ---
 id: interview order
 mandatory: True
@@ -25,7 +25,7 @@ fields:
     datatype: textdate    
     default: '2/1/2000'
     validate: |
-      lambda date_of_birth: True if is_date_valid( date_of_birth ).valid else validation_error("Your date doesn't look right")
+      lambda date_of_birth: True if is_date_valid( date_of_birth ).valid else validation_error("This date doesn't look right")
 
   - When did you start working: employment_date
     datatype: date
