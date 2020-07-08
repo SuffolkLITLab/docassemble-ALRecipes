@@ -5,7 +5,7 @@ modules:
   - docassemble.VirtualCourtToolbox.misc
 ---
 features:
-  javascript: docassemble.VirtualCourtToolbox:data/static/
+  javascript: docassemble.VirtualCourtToolbox:data/static/textDateInput.js
 ---
 id: interview order
 mandatory: True
