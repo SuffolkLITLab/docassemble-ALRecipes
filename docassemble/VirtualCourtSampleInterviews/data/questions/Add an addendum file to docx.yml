@@ -8,7 +8,7 @@ objects:
 mandatory: true
 question: |  
 subquestion: | 
-  This sample interview illustrats how to add a docx addendum file to a docx main template thru code. 
+  This sample interview illustrates how to add a docx addendum file to a docx main template thru code. 
   
   How to add an addendum: 
   <ol>

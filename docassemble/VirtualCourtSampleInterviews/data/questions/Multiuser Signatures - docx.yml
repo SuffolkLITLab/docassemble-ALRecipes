@@ -26,6 +26,7 @@ code: |
 ---
 mandatory: true
 code: |
+  intro
   if role == 'client':
     client.endpoint
   elif role == 'attorney':
@@ -33,6 +34,15 @@ code: |
       pre_attorney_signature
     else:
       final_screen
+---
+mandatory: true
+question: |  
+subquestion: | 
+  This sample interview illustrates how to handle two-party signature question flow and output, if your template is in **docx**. (For **pdf template**, see sample interview **Multiuser Signatures - pdf**.)
+  
+  In this interview, the main form template is a docx file. For simplicity reason, no other content is coded but signatures, so you can get to the point right away. In the preview phase, only the client's signature is displayed, in the finally phase, the attorney's signature is added.
+   
+field: intro  
 ---
 event: client.endpoint
 code: |
@@ -116,26 +126,24 @@ subquestion: |
    The form is now complete with your signature. You can  download it from this screen. 
   % endif
  
+  ${finalFile}
 buttons:
   - End the Interview: exit
   - Restart: restart
-  
+---
+reconsider: true  
 attachment: 
   - name: signed form - final
-    filename: signedForm
+    variable name: mainform
     docx template file: myform.docx
 ---
-comment: convert docx to pdf
+comment: generate final output file
 code: |      
-  outputFile = pdf_concatenate(myform,filename="preview.pdf")
-   
+  finalFile = pdf_concatenate(mainform, filename="myform.pdf")  
 ---
-attachment: 
-  - name: client signed form preview
-    filename: myform
-    variable name: myform
-    docx template file: myform.docx
-
+comment: convert docx to pdf for preview
+code: |      
+  outputFile = pdf_concatenate(mainform, filename="myform_preview.pdf")   
 ---
 event: user_kicked_out
 question: |

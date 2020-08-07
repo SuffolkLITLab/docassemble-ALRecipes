@@ -8,7 +8,7 @@ objects:
 mandatory: true
 question: |  
 subquestion: | 
-  This sample interview illustrats how to add a docx addendum file to a pdf main template thru code. Fields in the pdf are only partially coded for illustration purpose.
+  This sample interview illustrates how to add a docx addendum file to a pdf main template thru code. Fields in the pdf are only partially coded for illustration purpose.
   
   How to add an addendum: 
   <ol>

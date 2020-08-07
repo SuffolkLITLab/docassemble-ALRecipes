@@ -26,6 +26,7 @@ code: |
 ---
 mandatory: true
 code: |
+  intro
   if role == 'client':
     client.endpoint
   elif role == 'attorney':
@@ -33,6 +34,15 @@ code: |
       pre_attorney_signature
     else:
       final_screen
+---
+mandatory: true
+question: |  
+subquestion: | 
+  This sample interview illustrates how to handle two-party signature question flow and output, if your template is in **pdf**. (For **docx** template, see sample interview **Multiuser Signatures - docx**.)
+  
+  In this interview, the main form template is a pdf file. If the original signatures are on a separate page, you can move it into a docx file and follow this sample interview's code. If the signature page is not separatable, you will need some additional code, see sample interview **Preview pdf without remapping** to learn how to skip a signature in the preview stage.
+   
+field: intro  
 ---
 event: client.endpoint
 code: |
@@ -129,26 +139,21 @@ attachment:
     fields:
       - Textfield78: ${ client.name }
 --- 
+comment: |
+  This is the final page with only signatures on it.
+reconsider: true
 attachment: 
-  - name: both parties signed form
-    filename: Final Form
-	  variable name: finalForm
+	  variable name: finalPage
     docx template file: myform.docx   
----
-attachment: 
-  - name: signed form preview
-    filename: Preview Form
-    variable name: previewForm
-    docx template file: myform.docx
 ---
 comment: convert docx to pdf
 code: |        
-  previewFile = pdf_concatenate(mainForm, previewForm, filename="preview.pdf")	
+  previewFile = pdf_concatenate(mainForm, finalPage, filename="preview.pdf")	
 ---
 comment: |
-  combine files and convert to pdf. 
+  combine files and convert the results to a pdf. 
 code: |       
-  outputFile = pdf_concatenate(mainForm, finalForm, filename="final.pdf")
+  outputFile = pdf_concatenate(mainForm, finalPage, filename="final.pdf")
 ---
 event: user_kicked_out
 question: |

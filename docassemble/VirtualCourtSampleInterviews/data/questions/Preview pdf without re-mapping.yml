@@ -1,0 +1,83 @@
+---
+metadata:
+  title: Preview pdf without re-mapping
+---
+objects:
+  - finalFile: DAFileCollection
+---
+mandatory: true
+question: |  
+subquestion: |  
+  This sample interview illustrates how to build the preview of a pdf template with signature, but without having to repeat the field mapping for the final version of output. 
+  
+  In other words, you only need one attachment block. This is achieved by using "reconsider" in order to trigger it again in the final stage, and of course by mapping the signature field to a calculated variable.
+  
+field: intro  
+---
+question: |  
+subquestion: | 
+  What's your name?
+fields: 
+  - Name: clientName
+    default: John Doe
+---
+if: previewDone
+question: |  
+  If you are satisfied, please sign your name.
+signature: signature
+under: |
+  ${ clientName }
+---
+event: preview
+question: |
+  Preview your input before you sign the form:<br/><br/>
+  ${previewFile}
+action buttons:
+  - label: Continue
+    action: finalScreen
+---
+need: finalFile.finished
+event: finalScreen
+question: |
+  You have successfully completed the interview.    
+
+  Download the file with your signature.
+
+buttons: 
+  - Exit: exit
+  - Restart: restart  
+attachment code: finalFile
+---
+reconsider: true
+attachment:
+  - name: impoundment
+    filename: impoundment
+    variable name: main
+    pdf template file: impoundment.pdf
+    fields:
+      - DateSigned: ${ clientName } #parden my lazy mismatch here
+      - signature: ${ calSignature } 
+---
+comment: |
+  For preview screen, map the signature field to blank.
+mandatory: true
+code: |
+  calSignature = ''  
+  previewFile = pdf_concatenate(main,filename="impoundmen_preview.pdf")  
+  previewDone = True  
+  preview
+--- 
+comment: |
+  For final screen, map the signature field to the signature question. Then construct the typical dowload section of the final screen.
+code: |      
+  calSignature = signature
+  finalFile.pdf = pdf_concatenate(main)
+  finalFile.info = {
+    'name': 'impoundment', 
+    'filename': 'impoundment', 
+    'description': 'Alternative way to build pdf preview.', 
+    'file': {'pdf': finalFile.pdf.number}, 
+    'mimetype': {'pdf': finalFile.pdf.mimetype}
+  }
+  finalFile.finished = True
+  
