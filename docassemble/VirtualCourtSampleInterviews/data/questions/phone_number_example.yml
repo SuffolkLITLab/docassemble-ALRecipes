@@ -1,0 +1,45 @@
+metadata:
+  title: Phone number example
+  description: Phone number validation example
+  # Can make a formatter too, but that might be another project
+---
+include:
+  #- phone-number-validation.yml
+  - docassemble.VirtualCourtToolbox:phone-number-validation.yml
+---
+mandatory: True
+id: phone number example
+code: |
+  phone_number_1
+  phone_number_2
+  happy_end
+---
+id: phone numbers
+question: |
+  Virtual Toolbox example: phone number custom datatype
+subquestion: |
+  Try some phone numbers
+
+  Taken from https://www.npmjs.com/package/intl-tel-input. Defaults
+  to US and resets country when pressing the "Back" button. Sorry folks.
+  
+  Valid UK phone number to try: **44 1434 634996**[BR]
+  Valid US phone number to try: **201-555-0123**
+fields:
+  - no label: phone_number_1
+    datatype: phone
+  - no label: phone_number_2
+    datatype: phone
+---
+id: happy exit
+event: happy_end
+question: |
+  Your phone numbers
+subquestion: |
+  You can press "Back" and see that the numbers are saved, but the countries are both US. Also, the formatting changes a little.
+  
+  **Your numbers were:**[BR]
+  ${ phone_number_1 }[BR]
+  ${ phone_number_2 }[BR]
+---
+  
