@@ -8,7 +8,9 @@ objects:
 mandatory: true
 question: |  
 subquestion: |  
-  This sample interview illustrates how to build the preview of a pdf template with signature, but without having to repeat the field mapping for the final version of output. 
+  This recipe illustrates how to build the preview of a pdf template with signature, but without having to repeat the field mapping for the final version of output. 
+  
+  **The user doesn't need to log in.**
   
   In other words, you only need one attachment block. This is achieved by using "reconsider" in order to trigger it again in the final stage, and of course by mapping the signature field to a calculated variable.
   
