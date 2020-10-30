@@ -43,7 +43,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
     return out
 
 setup(name='docassemble.VirtualCourtSampleInterviews',
-      version='0.4.1',
+      version='0.0.4',
       description=('A docassemble extension.'),
       long_description='Independent recipes to illustrate how to handle specific situations.\r\n\r\n',
       long_description_content_type='text/markdown',
