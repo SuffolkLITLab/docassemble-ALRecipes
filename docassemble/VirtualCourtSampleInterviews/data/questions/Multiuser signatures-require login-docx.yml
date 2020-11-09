@@ -1,8 +1,7 @@
 ---
-comment: This is an expansion of a code sample from Jonathan Pyle.
 metadata:
   title: |
-    Ask for two parties' signatures - docx
+    Two parties' signatures - docx
 ---
 objects:  
   - client: Individual
@@ -26,6 +25,7 @@ code: |
 ---
 mandatory: true
 code: |
+  intro
   if role == 'client':
     client.endpoint
   elif role == 'attorney':
@@ -33,6 +33,23 @@ code: |
       pre_attorney_signature
     else:
       final_screen
+---
+mandatory: true
+question: |  
+subquestion: | 
+  This interview is based on Jonathan Pyle's recipe [https://docassemble.org/docs/roles.html#twouser](https://docassemble.org/docs/roles.html#twouser). It differs from the original in that it lets the other party to preview the form with the user's input. 
+  
+  For simplicity reasons, no other content is in the template file except signatures, so that you can see the flow more clearly. 
+  
+  Please note the following:
+  
+  1. User must log in to run this interview.
+  2. After all the questions are answered, the preview URL will be displayed for the user to send to the other party. (You can add an email button in your interview if you want, but that's not a major concern here.)
+  3. The other party must log in to PR and sign, then optionally print/download the final file with both signatures. 
+  4. The original user now can print/download the final file with both signatures.
+  5. For **pdf template**, see **Multiuser Signatures-require login-pdf.yml** in this package.
+   
+field: intro  
 ---
 event: client.endpoint
 code: |
@@ -116,26 +133,24 @@ subquestion: |
    The form is now complete with your signature. You can  download it from this screen. 
   % endif
  
+  ${finalFile}
 buttons:
   - End the Interview: exit
   - Restart: restart
-  
+---
+reconsider: true  
 attachment: 
   - name: signed form - final
-    filename: signedForm
-    docx template file: myform.docx
+    variable name: mainform
+    docx template file: signatures.docx
 ---
-comment: convert docx to pdf
+comment: generate final output file
 code: |      
-  outputFile = pdf_concatenate(myform,filename="preview.pdf")
-   
+  finalFile = pdf_concatenate(mainform, filename="myform.pdf")  
 ---
-attachment: 
-  - name: client signed form preview
-    filename: myform
-    variable name: myform
-    docx template file: myform.docx
-
+comment: convert docx to pdf for preview
+code: |      
+  outputFile = pdf_concatenate(mainform, filename="myform_preview.pdf")   
 ---
 event: user_kicked_out
 question: |

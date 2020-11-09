@@ -1,8 +1,7 @@
 ---
-comment: This is an expansion of a code sample from Jonathan Pyle.
 metadata:
   title: |
-    Ask for two parties' signatures - pdf
+    Two parties' signatures - pdf
 ---
 objects:  
   - client: Individual
@@ -38,9 +37,23 @@ code: |
 mandatory: true
 question: |  
 subquestion: | 
-  This sample interview illustrates how to handle two-party signature question flow and output, if your template is in **pdf**. (For **docx** template, see sample interview **Multiuser Signatures - docx**.)
+  This interview is based on Jonathan Pyle's recipe [https://docassemble.org/docs/roles.html#twouser](https://docassemble.org/docs/roles.html#twouser), which deals with a docx template file.
   
-  In this interview, the main form template is a pdf file. If the original signatures are on a separate page, you can move it into a docx file and follow this sample interview's code. If the signature page is not separatable, you will need some additional code, see sample interview **Preview pdf without remapping** to learn how to skip a signature in the preview stage.
+  This adaptation differs from the original in two aspects:
+  
+  * The template file used in this interview is PDF, not docx.
+  * It lets the other party to preview the form with the user's input. 
+  
+  For simplicity reasons, only client.name is mapped for the PDF form, so that you can see the flow more clearly. 
+  
+  Please note the following:
+  
+  1. User must log in to run this interview.
+  2. After all the questions are answered, the preview URL will be displayed for the user to send to the other party. (You can add an email button in your interview if you want, but that's not a major concern here.)
+  3. The other party must log in to PR and sign, then optionally print/download the final file with both signatures. 
+  4. The original user now can print/download the final file with both signatures.
+  5. If the signature fields on your PDF form are on a separate page, you can move it into a docx file and follow this recipe. If the signature page is not separatable, you will need some additional code, see another recipe **Preview pdf without remapping** in this package to learn how to skip a signature in the preview stage.
+  6. For **docx template**, see **Multiuser signatures-require login-docx.yml** in this package.
    
 field: intro  
 ---
@@ -144,7 +157,7 @@ comment: |
 reconsider: true
 attachment: 
 	  variable name: finalPage
-    docx template file: myform.docx   
+    docx template file: signatures.docx   
 ---
 comment: convert docx to pdf
 code: |        

@@ -1,6 +1,6 @@
 ---
 metadata:
-  title: Add an addendum file to pdf
+  title: Add an addendum file to a pdf main form
 ---
 objects:  
   - debts: DAList.using(object_type=Thing, complete_attribute='complete', ask_number=True) 
@@ -8,15 +8,17 @@ objects:
 mandatory: true
 question: |  
 subquestion: | 
-  This sample interview illustrats how to add a docx addendum file to a pdf main template thru code. Fields in the pdf are only partially coded for illustration purpose.
+  This recipe interview illustrates how to add a docx addendum file to a pdf main template. In this interview, fields in the pdf form are only partially coded for illustration purposes.
   
-  How to add an addendum: 
-  <ol>
-    <li>Create a docx file and load it to the template folder. </li>
-    <li>Add an "attachment" block for this docx. </li>
-    <li>Use the code to combine your original pdf template with the new docx file.</li>
-    <li>Display this file on the final screen.</li>
-   </ol>
+  How to add an addendum file: 
+  
+  * Create a docx file and load it to the template folder. 
+  * Add an "attachment" block for this docx file. 
+  * Use code to combine your original pdf template with the new docx file.
+  * Display this combined file on the final screen.
+  
+  If your main form is a docx file, see "Addenda - extra table records.yml" in the "AssemblyLineToolbox" package.
+   
 field: intro  
 ---
 question: |  
