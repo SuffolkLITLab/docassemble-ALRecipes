@@ -42,7 +42,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
                 out.setdefault(package, []).append(prefix+name)
     return out
 
-setup(name='docassemble.VirtualCourtSampleInterviews',
+setup(name='docassemble.',
       version='0.0.4',
       description=('A docassemble extension.'),
       long_description='Independent recipes to illustrate how to handle specific situations.\r\n\r\n',
@@ -55,6 +55,6 @@ setup(name='docassemble.VirtualCourtSampleInterviews',
       namespace_packages=['docassemble'],
       install_requires=[],
       zip_safe=False,
-      package_data=find_package_data(where='docassemble/VirtualCourtSampleInterviews/', package='docassemble.VirtualCourtSampleInterviews'),
+      package_data=find_package_data(where='docassemble//', package='docassemble.'),
      )
 
