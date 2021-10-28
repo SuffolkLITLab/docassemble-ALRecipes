@@ -1,0 +1,24 @@
+metadata:
+  title: ALIndividual Address With Country
+  example start: 3
+  example end: 4
+---
+include:
+  - docassemble.AssemblyLine:al_package_unstyled.yml
+---
+mandatory: True
+code: |
+  person.address.address
+---
+objects:
+  - person: ALIndividual
+---
+id: person's address
+sets:
+  - person.address.address
+  - person.address.city
+question: |
+  Person's Address
+fields:
+  - code: |
+      person.address_fields(show_country=True, country_code="US", default_state="MA")

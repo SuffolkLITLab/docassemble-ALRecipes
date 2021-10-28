@@ -1,0 +1,24 @@
+metadata:
+  title: ALIndividual Name Fields
+  example start: 3
+  example end: 4
+---
+include:
+  - docassemble.AssemblyLine:al_package_unstyled.yml
+---
+mandatory: True
+code: |
+  person.name.first
+---
+objects:
+  - person: ALIndividual
+---
+id: person's name
+sets:
+  - person.name.first
+  - person.name.last
+question: |
+  Person's name
+fields:
+  - code: |
+      person.name_fields()

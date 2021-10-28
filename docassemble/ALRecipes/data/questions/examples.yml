@@ -1,0 +1,23 @@
+- Suffolk LIT Lab Assembly Line:
+  - ALIndividual Names:
+    - example-al-names-person
+    - example-al-names-no-suffix
+    - example-al-names-unsure
+  - Standard Names:
+    - example-standard-name-fields
+  - ALIndividual Address:
+    - example-al-address
+    - example-al-address-show-country
+    #- Standard Address:
+    #  - example-standard-address-fields
+    #- ALIndividual Gender:
+    #  - example-al-gender
+    #- Gender:
+    #  - example-standard-gender
+    #- Logic in attachment blocks:
+    #  - example-attachment-multiline-if
+    #  - example-attachment-inline-if
+    #  - example-attachment-formatting-numbers
+    #- Miscellaneous:
+    #  - example-al-collapse-template
+    #  - example-multipart-date

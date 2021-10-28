@@ -1,0 +1,24 @@
+metadata:
+  title: Standard Individual Name Fields
+  example start: 2
+  example end: 3
+---
+mandatory: True
+code: |
+  person.name.first
+---
+objects:
+  - person: Individual
+---
+id: person's name
+question: |
+  Person's name
+fields:
+  - First: person.name.first
+  - Middle: person.name.middle
+    required: False
+  - Last: person.name.last
+  - Suffix: person.name.suffix
+    code: |
+      name_suffix()
+    required: False
