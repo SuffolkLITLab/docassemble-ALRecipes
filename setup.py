@@ -43,7 +43,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
     return out
 
 setup(name='docassemble.ALRecipes',
-      version='0.0.4',
+      version='0.1.0',
       description=('A docassemble extension.'),
       long_description='# docassemble.ALRecipes\r\n\r\nSome playground examples for the Document Assembly Line project.\r\n\r\nThis repository includes both short examples you can insert directly into\r\nyour own playground, and longer examples that you can discover and browse\r\nby visiting the GitHub page.\r\n\r\n## Add examples to your own playground\r\n\r\nEdit the /config, and add the following: \r\n\r\n```yaml\r\nplayground examples:\r\n  - docassemble.ALRecipes:data/questions/examples.yml\r\n  - docassemble.base:data/questions/example-list.yml  \r\n```\r\n\r\n',
       long_description_content_type='text/markdown',

@@ -1,0 +1,10 @@
+---
+metadata:
+  title: Hello, World
+  documentation: "https://docassemble.org/docs.html"
+  example start: 1
+  example end: 1
+---
+mandatory: True
+question: |
+  Hello, World!
