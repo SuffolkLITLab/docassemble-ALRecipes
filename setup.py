@@ -42,7 +42,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
                 out.setdefault(package, []).append(prefix+name)
     return out
 
-setup(name='docassemble.',
+setup(name='docassemble.ALRecipes',
       version='0.0.4',
       description=('A docassemble extension.'),
       long_description='Independent recipes to illustrate how to handle specific situations.\r\n\r\n',
@@ -55,6 +55,6 @@ setup(name='docassemble.',
       namespace_packages=['docassemble'],
       install_requires=[],
       zip_safe=False,
-      package_data=find_package_data(where='docassemble//', package='docassemble.'),
+      package_data=find_package_data(where='docassemble/ALRecipes/', package='docassemble.ALRecipes'),
      )
 
