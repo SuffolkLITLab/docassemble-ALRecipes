@@ -1,12 +1,13 @@
 ---
 metadata:
-  title: Preview pdf without re-mapping
+  title: ALRecipes - Preview pdf without re-mapping
 ---
 objects:
   - finalFile: DAFileCollection
 ---
 mandatory: true
 question: |  
+  Preview pdf without re-mapping the fields
 subquestion: |  
   This recipe illustrates how to build the preview of a pdf template with signature, but without having to repeat the field mapping for the final version of output. 
   
@@ -16,7 +17,7 @@ subquestion: |
   
 field: intro  
 ---
-question: |  
+question: |    
 subquestion: | 
   What's your name?
 fields: 

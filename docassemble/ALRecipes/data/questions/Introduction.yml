@@ -1,16 +1,103 @@
 metadata:
-  title: Virtual Court Sample Interviews
-
+  title: ALRecipes - Overview
+---
+modules:
+  - docassemble.ALToolbox.misc
+---
+objects:
+  - al_example_list: DAList.using(auto_gather=False, gathered=True)   
+  - da_example_list: DAList.using(auto_gather=False, gathered=True)  
 ---
 mandatory: true
+code: |
+  al_list_done
+  da_list_done
+  display
+---
+event: display
 question: |
+  ALRecipes Overview
 subquestion: |
-  This project is a host place for sample interviews to show others how to address a particular need.
+  This project is a host place for example interviews (recipes) to show developers how to address a particular docassemble interview need.    
   
-  **For authors**: In your sample interview, try to explicitly explain your purpose and clearly outline the steps involved.
+  &#128276 Some of our recipes are related to the AssemblyLine project, some of them are generic docassemble interviews, they are listed below in separate tables.
+    
+  #### Notes for contributors:
   
-  **For users**: each yml file in this project is an independant interview, you can run it first to see how it functions, then view the code and adapt it to your own interview. 
+  1. When you add a generic docassemble interview:
+      - Use **snake_case.ext** to name all your files.
+      - In the metadata section add a **title** starting with **ALRecipes - **.
+      - In your example interview, try to explicitly explain your purpose and clearly outline the steps involved.
+  1. When you add an AssemblyLine example:
+      - Follow the existing examples for code structure and file name convention.
+      - Add a .png file, see the existing ones.
+      - Add your file name to the index file **examples.yml**.
+  1. Remember to add your example to one of the tables below.
   
-  If an interview involves a template file, sometimes you may need to download it to see the inside content, especially those addendum templates.
-
+  #### Notes for users:
   
+  1. Each yml file in this project is an independant interview, you can run it first to see how it functions, then view the code and adapt it to your own interview.   
+  1. If an interview involves a template file, sometimes you may need to download it to see the inside content, especially those addendum templates. Such files are listed in the "reference" column.
+    
+  #####<span class="title">Generic docassemble recipes</span>  
+  ${ da_example_list.table }
+    
+  #####<span class="title">AssemblyLine example interviews</span>
+  For easy access, these examples are also displayed in the **Example blocks** area of the Playground in addition to the starndard docassemble examples, so that you can utilize a particular AssemblyLine recipe as you are developing your own interview. To learn more, visit the [ALDocumentation website - ALRecipes](https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/framework/alrecipes) page.
+  ${ al_example_list.table }  
+  
+css: |
+  <style>
+    .title {color: brown;}
+  </style>  
+---
+table: da_example_list.table
+rows: da_example_list
+columns:
+  - Demo Name: |
+      '<a href="' + interview_url(i=user_info().package + ":" + row_item.name + ".yml") + ' target="\_blank">' + str(row_item.name).replace('-',' ').replace('_',' ').title() + '</a>' 
+  - Description: |
+      row_item.description      
+  - Reference File: |      
+      row_item.reference      
+---
+table: al_example_list.table
+rows: al_example_list
+columns:
+  - Demo Name: |
+      '<a href="' + interview_url(i=user_info().package + ":" + row_item.name + ".yml") + ' target="_blank">' + str(row_item.name).replace('-',' ').replace('_',' ').title() + '</a>' 
+  - Description: |
+      row_item.description      
+  - Reference File: |      
+      row_item.reference  
+---
+# For AL related example interviews
+code: |  
+  al_example_list.clear()  
+  labels = {}
+  labels = {
+    "example-al-address-show-country": ['Display country code with person\'s address', 'AssemblyLine:al_package_unstyled.yml'],
+    "example-al-address": ['Don\'t display country code with person\'s address', 'AssemblyLine:al_package_unstyled.yml'],
+    "example-standard-name-fields": ['Display person\'s name using docassemble standard way', ''],
+    "example-al-names-no-suffix": ['Display person\'s name without suffix', 'AssemblyLine:al_package_unstyled.yml'],
+    "example-al-names-person": ['Display person\'s name with suffix', 'AssemblyLine:al_package_unstyled.yml'],
+    "example-al-names-unsure": ['Identify if the entity is a person or an organization', 'AssemblyLine:al_package_unstyled.yml'],
+    "example-al-address-show-country": ['Display country code with person\'s address', 'AssemblyLine:al_package_unstyled.yml'],
+    
+  }
+  add_records(al_example_list, labels)
+  al_list_done = True  
+---
+# For generic docassemble example interviews
+code: |  
+  da_example_list.clear()  
+  labels = {}
+  labels = {
+    "Add an addendum file to pdf": ['Add a docx attachment file to a pdf main form', 'debts.pdf, debts_addendum.docx'],    
+    "Multiuser signatures-require login-docx": ['Two parties signatures with a docx template', 'signatures.docx'],
+    "Multiuser Signatures-require login-pdf": ['Two parties signatures with a pdf template', 'debts.pdf, signatures.docx'],
+    "Preview pdf without re-mapping": ['Add a preview page without remapping your pdf form fields', 'impoundment.pdf'],
+    "web_data_extraction": ['Extract external web data to display in your interview', 'ma_dv_hotline.py, hotline-output.docx'],
+  }
+  add_records(da_example_list, labels)
+  da_list_done = True  

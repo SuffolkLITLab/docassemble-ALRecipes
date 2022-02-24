@@ -1,7 +1,6 @@
 ---
 metadata:
-  title: |
-    Two parties' signatures - docx
+  title: ALRecipes - Two parties' signatures - docx template
 ---
 objects:  
   - client: Individual
@@ -36,6 +35,7 @@ code: |
 ---
 mandatory: true
 question: |  
+  Two parties' signatures required for docx template
 subquestion: | 
   This interview is based on Jonathan Pyle's recipe [https://docassemble.org/docs/roles.html#twouser](https://docassemble.org/docs/roles.html#twouser). It differs from the original in that it lets the other party to preview the form with the user's input. 
   
@@ -47,7 +47,7 @@ subquestion: |
   2. After all the questions are answered, the preview URL will be displayed for the user to send to the other party. (You can add an email button in your interview if you want, but that's not a major concern here.)
   3. The other party must log in to PR and sign, then optionally print/download the final file with both signatures. 
   4. The original user now can print/download the final file with both signatures.
-  5. For **pdf template**, see **Multiuser Signatures-require login-pdf.yml** in this package.
+  5. For **pdf template**, see example **Multiuser Signatures-require login-pdf** in this package.
    
 field: intro  
 ---
