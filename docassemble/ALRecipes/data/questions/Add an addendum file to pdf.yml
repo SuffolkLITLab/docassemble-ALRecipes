@@ -1,12 +1,13 @@
 ---
 metadata:
-  title: Add an addendum file to a pdf main form
+  title: ALRecipes - Add an addendum file to a pdf main form
 ---
 objects:  
   - debts: DAList.using(object_type=Thing, complete_attribute='complete', ask_number=True) 
 ---
 mandatory: true
 question: |  
+  Add an addendum file to a pdf main form
 subquestion: | 
   This recipe interview illustrates how to add a docx addendum file to a pdf main template. In this interview, fields in the pdf form are only partially coded for illustration purposes.
   

@@ -1,0 +1,59 @@
+metadata: 
+  title: ALRecipes - Web data extraction example
+---
+modules:
+  - .ma_dv_hotline
+---
+mandatory: True
+question: |
+  Web data extraction example
+subquestion: |
+  Sometimes it's useful to extract a piece of data from an external website, and display the result in your docassembly interview. 
+  
+  This example goes to https://janedoe.org to extract Massachusetts DV Hotline information, then displays the results on the screen as well as in a template docx file. The python tools used are **mechanize** and **HTMLParser**.  
+  
+  When you develop your own data extracting code, you need to inspect your target site in order to find the ID/class names of the relavent input and output items, then use them in your code accordingly. 
+  
+  As a courtesy, remember to give credit to the website from which you extract the data.
+  
+field: intro
+---
+question: |
+  For which city do you want to get the hotline information? 
+subquestion: |
+  The location must be in MA. Enter one of the following, but not both.
+fields:
+  - MA city name: myCity
+    hint: Acton
+    required: false
+  - MA zip: myZip
+    hint: '02118'
+    required: false
+---
+mandatory: True
+question: |
+  ##Credit: we use the search engine provided by https://janedoe.org to generate the output below
+subquestion: |      
+  ####MA DV Hotline information for ${ myZip } ${ myCity.title() }
+  <ul>
+  %for v in output:
+    %if len(v):    
+      ${ v }
+    %else:
+    [BR]
+    %endif
+  %endfor
+  </ul>
+
+attachment:
+  name: Web Data Extraction Example
+  filename: MA DV Hotline Info
+  docx template file: hotline-output.docx  
+
+---
+code: |
+  if myCity:
+    # Use title case of the input
+    output = ma_dv_hotline(myCity.title(), 'city')      
+  else:
+    output = ma_dv_hotline(myZip, 'zip')

@@ -1,7 +1,6 @@
 ---
 metadata:
-  title: |
-    Two parties' signatures - pdf
+  title: ALRecipes - Two parties' signatures - pdf
 ---
 objects:  
   - client: Individual
@@ -36,6 +35,7 @@ code: |
 ---
 mandatory: true
 question: |  
+  Two parties' signatures required for pdf template
 subquestion: | 
   This interview is based on Jonathan Pyle's recipe [https://docassemble.org/docs/roles.html#twouser](https://docassemble.org/docs/roles.html#twouser), which deals with a docx template file.
   
@@ -53,7 +53,7 @@ subquestion: |
   3. The other party must log in to PR and sign, then optionally print/download the final file with both signatures. 
   4. The original user now can print/download the final file with both signatures.
   5. If the signature fields on your PDF form are on a separate page, you can move it into a docx file and follow this recipe. If the signature page is not separatable, you will need some additional code, see another recipe **Preview pdf without remapping** in this package to learn how to skip a signature in the preview stage.
-  6. For **docx template**, see **Multiuser signatures-require login-docx.yml** in this package.
+  6. For **docx template**, see example **Multiuser signatures-require login-docx** in this package.
    
 field: intro  
 ---
