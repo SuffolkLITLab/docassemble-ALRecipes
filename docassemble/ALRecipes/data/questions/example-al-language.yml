@@ -1,0 +1,24 @@
+metadata:
+  title: ALIndividual Language
+  example start: 3
+  example end: 4
+---
+include:
+  - docassemble.AssemblyLine:al_package_unstyled.yml
+---
+mandatory: True
+code: |
+  person.language
+---
+objects:
+  - person: ALIndividual
+---
+id: person's language
+sets:
+  - person.language
+question: |
+  What language does Person speak?
+fields:
+  - code: |
+      person.language_fields(choices=al_language_user_choices, style="radio")
+  # if style is anything other than "radio" the input will be a dropdown menu      

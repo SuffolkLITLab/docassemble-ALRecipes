@@ -1,0 +1,33 @@
+metadata:
+  title: ALIndividual Language
+  example start: 3
+  example end: 4
+---
+mandatory: True
+code: |
+  person.language
+---
+objects:
+  - person: Individual
+---
+id: language
+question: |
+  What language does Person prefer to speak?
+fields:
+  - Language: person.language
+    datatype: radio
+    choices:
+      - English: en
+      - Spanish: es
+      - Arabic: ar
+      - Cape Verdean: kea
+      - Chinese (Cantonese): yue
+      - Chinese (Mandarin): cmn
+      - French: fr
+      - Haitian: ht
+      - Portuguese: pt
+      - Other: other
+  - Other language: person.language_other
+    show if: 
+      variable: person.language
+      is: other

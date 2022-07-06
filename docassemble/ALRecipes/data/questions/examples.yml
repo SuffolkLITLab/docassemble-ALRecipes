@@ -10,6 +10,10 @@
   - ALIndividual Address:
     - example-al-address
     - example-al-address-show-country
+  - ALIndividual Language:
+    - example-al-language
+  - Standard language:
+    - example-standard-language
     #- Standard Address:
     #  - example-standard-address-fields
     #- ALIndividual Gender:
