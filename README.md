@@ -15,7 +15,7 @@ Edit the /config, and add the following:
 
 ```yaml
 playground examples:
-  - docassemble.ALRecipes:data/questions/examples.yml
+  - docassemble.ALRecipes:data/questions/example-list.yml
   - docassemble.base:data/questions/example-list.yml  
 ```
 
