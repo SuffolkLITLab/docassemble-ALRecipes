@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "docassemble.ALRecipes"
+version = "0.2.0"
+description = "Short examples and recipe interviews for the Document Assembly Line project."
+readme = "README.md"
+authors = [
+    { name="Suffolk Legal Innovation and Technology Lab", email="litlab@suffolk.edu" },
+]
+dependencies = [
+    "mechanize>=0.4.5",
+]
+license = "MIT"
+license-files = ["LICENSE*"]
+
+[project.urls]
+GitHub = "https://github.com/SuffolkLITLab/docassemble-ALRecipes"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
