@@ -34,6 +34,7 @@ code: |
       final_screen
 ---
 mandatory: true
+id: "two parties signatures required for pdf template"
 question: |  
   Two parties' signatures required for pdf template
 subquestion: | 
@@ -72,6 +73,7 @@ code: |
   attorney.signature
 
 ---
+id: "what is your name"
 question: |
   What is your name?
 fields:
@@ -80,6 +82,7 @@ fields:
   - Last Name: client.name.last    
     default: 'Doe'
 ---
+id: "what is the name and e mail address of your attorney"
 question: |
   What is the name and e-mail address of your attorney?
 fields:
@@ -95,6 +98,7 @@ signature: attorney.signature
 under: |
   ${ attorney.name }
 ---
+id: "please sign your name below"
 question: |
   Please sign your name below.
 signature: client.signature
@@ -117,6 +121,7 @@ action buttons:
 ---
 event: waiting_on_attorney
 mandatory: true
+id: "done for now"
 question: |  
   Done for now.  
 subquestion: |
@@ -169,6 +174,7 @@ code: |
   outputFile = pdf_concatenate(mainForm, finalPage, filename="final.pdf")
 ---
 event: user_kicked_out
+id: "you are not authorized"
 question: |
   You are not authorized.
 subquestion: |

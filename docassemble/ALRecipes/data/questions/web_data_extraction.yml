@@ -5,6 +5,7 @@ modules:
   - .ma_dv_hotline
 ---
 mandatory: True
+id: "web data extraction example"
 question: |
   Web data extraction example
 subquestion: |
@@ -18,6 +19,7 @@ subquestion: |
   
 field: intro
 ---
+id: "for which city do you want to get the hotline information"
 question: |
   For which city do you want to get the hotline information? 
 subquestion: |
@@ -31,6 +33,7 @@ fields:
     required: false
 ---
 mandatory: True
+id: "credit we use the search engine provided by https janedoe org to generate the output below"
 question: |
   ##Credit: we use the search engine provided by https://janedoe.org to generate the output below
 subquestion: |      
