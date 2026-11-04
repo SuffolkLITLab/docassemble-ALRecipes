@@ -125,7 +125,7 @@ id: "done for now"
 question: |  
   Done for now.  
 subquestion: |
-  Here is the form with your signature. Please review it. If you need to make corrections, use the back button; otherwise please **ask ${ attorney } to go to [this link](${ interview_url() }) and register with the e-mail address ${ attorney.email }**.<br/>
+  Here is the form with your signature. Please review it. If you need to make corrections, use the back button; otherwise please **ask ${ attorney } to go to [review and sign the form](${ interview_url() }) and register with the e-mail address ${ attorney.email }**.<br/>
   
   You can use the button below the file to check the status. You won't be able to proceed until the attorney has signed.<br/>
   
