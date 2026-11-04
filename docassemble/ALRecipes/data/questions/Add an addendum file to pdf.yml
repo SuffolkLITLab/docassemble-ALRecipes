@@ -6,6 +6,7 @@ objects:
   - debts: DAList.using(object_type=Thing, complete_attribute='complete', ask_number=True) 
 ---
 mandatory: true
+id: "add an addendum file to a pdf main form"
 question: |  
   Add an addendum file to a pdf main form
 subquestion: | 

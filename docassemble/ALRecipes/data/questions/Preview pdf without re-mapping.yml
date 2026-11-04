@@ -6,6 +6,7 @@ objects:
   - finalFile: DAFileCollection
 ---
 mandatory: true
+id: "preview pdf without re mapping the fields"
 question: |  
   Preview pdf without re-mapping the fields
 subquestion: |  
@@ -25,6 +26,7 @@ fields:
     default: John Doe
 ---
 if: previewDone
+id: "if you are satisfied please sign your name"
 question: |  
   If you are satisfied, please sign your name.
 signature: signature
@@ -32,6 +34,7 @@ under: |
   ${ clientName }
 ---
 event: preview
+id: "preview your input before you sign the form br br previewfile"
 question: |
   Preview your input before you sign the form:<br/><br/>
   ${previewFile}
@@ -41,6 +44,7 @@ action buttons:
 ---
 need: finalFile.finished
 event: finalScreen
+id: "you have successfully completed the interview download the file with your signature"
 question: |
   You have successfully completed the interview.    
 

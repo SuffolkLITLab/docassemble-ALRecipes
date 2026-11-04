@@ -6,5 +6,6 @@ metadata:
   example end: 1
 ---
 mandatory: True
+id: "hello world"
 question: |
   Hello, World!
